@@ -1,6 +1,6 @@
 import { test as base } from 'playwright-bdd';
 import { LoginPage } from '../pages/LoginPage';
-
+import { ProductsPage } from '../pages/ProductsPage';
 
 /**
  * Scratch space shared between step definitions within a single scenario
@@ -13,12 +13,18 @@ export type TestState = {
 
 type Fixtures = {
   loginPage: LoginPage;
+  productsPage: ProductsPage;
+
   testState: TestState;
 };
 
 export const test = base.extend<Fixtures>({
   loginPage: async ({ page }, use) => {
     await use(new LoginPage(page));
+  },
+  
+  productsPage: async ({ page }, use) => {
+    await use(new ProductsPage(page));
   },
 
   testState: async ({}, use) => {
