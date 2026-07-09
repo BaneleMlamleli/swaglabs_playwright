@@ -3,6 +3,8 @@ import { LoginPage } from '../pages/LoginPage';
 import { ProductsPage } from '../pages/ProductsPage';
 import { CartPage } from '../pages/CartPage';
 import { CheckoutStepOnePage } from '../pages/CheckoutStepOnePage';
+import { CheckoutStepTwoPage } from '../pages/CheckoutStepTwoPage';
+import { CheckoutCompletePage } from '../pages/CheckoutCompletePage';
 
 /**
  * Scratch space shared between step definitions within a single scenario
@@ -18,6 +20,8 @@ type Fixtures = {
   productsPage: ProductsPage;
   cartPage: CartPage;
   checkoutStepOnePage: CheckoutStepOnePage;
+  checkoutStepTwoPage: CheckoutStepTwoPage;
+  checkoutCompletePage: CheckoutCompletePage;
   testState: TestState;
 };
 
@@ -36,6 +40,14 @@ export const test = base.extend<Fixtures>({
   
   checkoutStepOnePage: async ({ page }, use) => {
     await use(new CheckoutStepOnePage(page));
+  },
+  
+  checkoutStepTwoPage: async ({ page }, use) => {
+    await use(new CheckoutStepTwoPage(page));
+  },
+
+  checkoutCompletePage: async ({ page }, use) => {
+    await use(new CheckoutCompletePage(page));
   },
 
   testState: async ({}, use) => {
