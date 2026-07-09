@@ -1,10 +1,28 @@
 {
   "name": "swaglabs_playwright",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {},
-  "keywords": [],
+  "description": "Playwright BDD (TypeScript) automated test suite for https://www.saucedemo.com",
+  "scripts": {
+    "bdd:gen": "bddgen",
+    "test": "npm run bdd:gen && playwright test",
+    "test:headed": "npm run bdd:gen && playwright test --headed",
+    "test:chromium": "npm run bdd:gen && playwright test --project=chromium",
+    "test:ui": "npm run bdd:gen && playwright test --ui",
+    "test:login": "npm run bdd:gen && playwright test --grep @login",
+    "test:sorting": "npm run bdd:gen && playwright test --grep @sorting",
+    "test:cart": "npm run bdd:gen && playwright test --grep @cart",
+    "test:checkout": "npm run bdd:gen && playwright test --grep @checkout",
+    "typecheck": "tsc --noEmit",
+    "report": "playwright show-report",
+    "install:browsers": "playwright install --with-deps"
+  },
+  "keywords": [
+    "playwright",
+    "bdd",
+    "cucumber",
+    "typescript",
+    "saucedemo"
+  ],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
