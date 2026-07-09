@@ -54,6 +54,10 @@ npx playwright install --with-deps   # downloads browser binaries (chromium/fire
 ## Running the tests
 
 ```bash
+npx playwright test --project=chromium ./.features-gen/features/login.feature.spec.js --headed # Run a single test file on a specific browser (chromium, firefox, and webkit)
+```
+
+```bash
 npm test                    # bddgen + run everything (chromium, firefox, webkit)
 npm run test:chromium       # chromium only - fastest for local iteration
 npm run test:headed         # watch the browser while it runs
@@ -63,10 +67,6 @@ npm run test:sorting        # only @sorting tagged scenarios
 npm run test:cart           # only @cart tagged scenarios
 npm run test:checkout       # only @checkout tagged scenarios (incl. negative)
 npm run report              # open the last HTML report
-```
-
-```bash
-npx playwright test --project=chromium ./.features-gen/features/login.feature.spec.js --headed # Run a single test file on a specific browser (chromium, firefox, and webkit)
 ```
 
 `npm run bdd:gen` (run automatically by the scripts above) compiles the `.feature` files + step definitions into runnable Playwright spec files under `.features-gen/`, which is what actually executes
