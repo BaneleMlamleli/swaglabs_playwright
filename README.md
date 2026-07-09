@@ -65,20 +65,4 @@ npm run test:checkout       # only @checkout tagged scenarios (incl. negative)
 npm run report              # open the last HTML report
 ```
 
-`npm run bdd:gen` (run automatically by the scripts above) compiles the `.feature` files + step definitions into runnable Playwright spec files under `.features-gen/`, which is what actually executes.
-
-## Design notes / assumptions
-
-- **Valid user**: `standard_user` / `secret_sauce` is used throughout, per SauceDemo's documented test accounts.
-- **Negative login** covers `locked_out_user`, a wrong password, an unknown username, and both required-field-empty cases.
-- **Sorting validation** re-sorts the scraped product names/prices in JS and asserts the DOM order matches — this catches both a broken dropdown *and* a dropdown that changes visual order without actually re-sorting correctly.
-- **Cart total math**: the sum of individual item prices is captured once on the Cart page (`testState.cartItemsTotal`) and re-asserted against the "Item total" line shown on the Checkout Overview page, satisfying "validate cart total before checkout" *and* "item total displayed matches calculated total" with one consistent value.
-- **Tax validation** only asserts that a tax line is visible and non-negative (SauceDemo computes tax dynamically; asserting an exact percentage would make the test brittle without documented tax rules).
-- **Post-purchase checks** verify: success header text, success body text, cart badge fully hidden (not just "0"), burger menu → All Items returns to a real Products page, cart is empty after purchase, and logout returns to the login form.
-- Tests run across **chromium, firefox, and webkit** by default (configurable in `playwright.config.ts`).
-
-## Possible extensions
-
-- Add API-level or storage-state-based login to speed up scenarios that don't need to test login itself.
-- Parameterize the checkout happy path to run once per browser/user type (e.g. `problem_user`, `performance_glitch_user`) to catch SauceDemo's intentionally-buggy accounts.
-- Add visual regression checks for `problem_user` (known to have broken product images).
+`npm run bdd:gen` (run automatically by the scripts above) compiles the `.feature` files + step definitions into runnable Playwright spec files under `.features-gen/`, which is what actually executes
