@@ -65,4 +65,8 @@ npm run test:checkout       # only @checkout tagged scenarios (incl. negative)
 npm run report              # open the last HTML report
 ```
 
+```bash
+npx playwright test --project=chromium ./.features-gen/features/login.feature.spec.js --headed # Run a single test file on a specific browser (chromium, firefox, and webkit)
+```
+
 `npm run bdd:gen` (run automatically by the scripts above) compiles the `.feature` files + step definitions into runnable Playwright spec files under `.features-gen/`, which is what actually executes
