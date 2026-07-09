@@ -4,12 +4,10 @@ Automated end-to-end test suite for [https://www.saucedemo.com](https://www.sauc
 
 ## What's covered
 
-| Feature file | Scenarios |
-|---|---|
-| `features/login.feature` | Valid login; 6 negative login cases (locked out user, invalid user/password, missing username, missing password) |
-| `features/sorting.feature` | All 4 sort options (Name A–Z, Name Z–A, Price low–high, Price high–low), with assertions that the resulting order is actually correct |
-| `features/checkout.feature` | Full happy-path journey: add all 6 products → validate cart badge/count → validate cart total → checkout info → item total vs. tax vs. displayed total → complete order → success title/message → cart badge cleared → burger menu → All Items → products page shown → cart empty → logout → login page shown |
-| `features/checkout-negative.feature` | Checkout form blocked on missing first name / last name / postal code |
+- `features/login.feature` Valid login; 6 negative login cases (locked out user, invalid user/password, missing username, missing password)
+- `features/sorting.feature` All 4 sort options (Name A–Z, Name Z–A, Price low–high, Price high–low), with assertions that the resulting order is actually correct
+- `features/checkout.feature` Full happy-path journey: add all 6 products → validate cart badge/count → validate cart total → checkout info → item total vs. tax vs. displayed total → complete order → success title/message → cart badge cleared → burger menu → All Items → products page shown → cart empty → logout → login page shown
+- `features/checkout-negative.feature` Checkout form blocked on missing first name / last name / postal code
 
 ## Project structure
 
@@ -40,7 +38,7 @@ saucedemo-playwright-bdd/
 └── package.json
 ```
 
-### Why this structure
+### Why I chose this structure
 - **Gherkin features** stay readable for non-technical stakeholders and map 1:1 to the required user journey.
 - **Step definitions** are grouped by domain (login/sorting/cart/checkout) rather than by feature file, so shared steps (e.g. "I am logged in as a standard user") aren't duplicated.
 - **Page Objects** isolate all selectors, so if SauceDemo's markup changes, only one file needs updating.
@@ -52,8 +50,6 @@ saucedemo-playwright-bdd/
 npm install
 npx playwright install --with-deps   # downloads browser binaries (chromium/firefox/webkit)
 ```
-
-> Note: this was built and validated in a sandboxed environment where browser-binary downloads were network-blocked. The suite was verified via `npx bddgen` (all 16 scenarios × 3 browsers = 48 tests resolve with zero ambiguous/undefined steps) and `tsc --noEmit` (clean compile). Run `npx playwright install` in your own environment before executing tests.
 
 ## Running the tests
 
